@@ -1,0 +1,45 @@
+{
+  "name": "middleware-sanitizeurl",
+  "description": "ExpressJS middleware that checks request URL for potentially breaking things",
+  "author": "Nebenan.de <max@nebenan.de>",
+
+  "license": "MIT",
+  "readmeFilename": "README.md",
+
+  "repository": "good-hood-gmbh/middleware-sanitizeurl",
+  "bugs": "https://github.com/good-hood-gmbh/middleware-sanitizeurl/issues",
+
+  "version": "0.0.1",
+
+  "keywords": [
+    "express",
+    "expressjs",
+    "middleware",
+    "query",
+    "querysting",
+    "sanitize"
+  ],
+
+  "main": "index.js",
+  "engines": {
+    "node": "^6.x.x"
+  },
+
+  "scripts": {
+    "test": "env TZ='Europe/Berlin' mocha || exit 0"
+  },
+
+  "devDependencies": {
+    "eslint": "3.17.1",
+    "eslint-config-airbnb-base": "11.1.1",
+    "eslint-plugin-import": "2.2.0",
+
+    "mocha": "3.2.0",
+    "chai": "3.5.0",
+    "chai-spies": "0.7.1"
+  },
+
+  "dependencies": {
+    "winston": "2.3.1"
+  }
+}
