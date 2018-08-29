@@ -21,7 +21,6 @@ describe('SanitizeUrl suite', () => {
     next = sinon.spy();
   });
 
-
   it('url with weird characters', () => {
     req.originalUrl += '/%c0%ae%c0%ae';
 
@@ -31,6 +30,33 @@ describe('SanitizeUrl suite', () => {
     expect(res.redirect.calledWith(301, '/')).to.be.true;
   });
 
+  it('url with multiple slashes', () => {
+    req.originalUrl += '///lol/kek//////wow';
+
+    middleware(req, res, next);
+    expect(next.notCalled).to.be.true;
+    expect(res.redirect.calledOnce).to.be.true;
+    expect(res.redirect.calledWith(301, '/lol/kek/wow')).to.be.true;
+  });
+
+  it('short url with multiple slashes', () => {
+    req.originalUrl += '//////';
+
+    middleware(req, res, next);
+    expect(next.notCalled).to.be.true;
+    expect(res.redirect.calledOnce).to.be.true;
+    expect(res.redirect.calledWith(301, '/')).to.be.true;
+  });
+
+  it('url with multiple slashes and double query string', () => {
+    req.originalUrl += '///lol/kek//////wow?query?is=amazing?isnt=it&i=agree&with?this&nonsense';
+
+    middleware(req, res, next);
+    expect(next.notCalled).to.be.true;
+    expect(res.redirect.calledOnce).to.be.true;
+    expect(res.redirect.calledWith(301, '/lol/kek/wow?query&is=amazing&isnt=it&i=agree&with&this&nonsense')).to.be.true;
+  });
+
   it('url with double query string', () => {
     req.originalUrl += '/some/such?query=yes&more=yes?what=haha&another=query!';
 
@@ -38,6 +64,15 @@ describe('SanitizeUrl suite', () => {
     expect(next.notCalled).to.be.true;
     expect(res.redirect.calledOnce).to.be.true;
     expect(res.redirect.calledWith(301, '/some/such?query=yes&more=yes&what=haha&another=query!')).to.be.true;
+  });
+
+  it('url with empty query string', () => {
+    req.originalUrl += '/some/such?';
+
+    middleware(req, res, next);
+    expect(next.notCalled).to.be.true;
+    expect(res.redirect.calledOnce).to.be.true;
+    expect(res.redirect.calledWith(301, '/some/such')).to.be.true;
   });
 
   it('regular url', () => {
