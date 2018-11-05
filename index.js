@@ -1,7 +1,6 @@
-const { info } = require('winston');
+const debug = require('debug')('middleware-sanitizeurl');
 
 const defaults = {
-  log: false,
   redirectTo: '/',
 };
 
@@ -27,14 +26,14 @@ module.exports = (opts) => {
       decodeURIComponent(originalUrl);
     } catch (err) {
       const url = options.redirectTo;
-      if (options.log) info(`couldn't parse ${originalUrl}, redirecting to ${url}`);
+      debug(`couldn't parse ${originalUrl}, redirecting to ${url}`);
       return res.redirect(301, url);
     }
 
     const safeUrl = getSafeUrl(originalUrl);
 
     if (originalUrl !== safeUrl) {
-      if (options.log) info(`${originalUrl} isn't valid, redirecting to ${safeUrl}`);
+      debug(`${originalUrl} isn't valid, redirecting to ${safeUrl}`);
       return res.redirect(301, safeUrl);
     }
 

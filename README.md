@@ -9,11 +9,10 @@ ExpressJS middleware that checks request URL for potentially breaking things, su
 After one of the above checks fails the middleware attempts to guess a safe variant of the url and redirect there.
 
 ## Options:
- - `log (bool)`: When set to `true`, will log redirects with `winston` module, default: `false`
  - `redirectTo (string)`: When url contains breaking character sequences and is impossible to parse, redirect to this URL, default: `'/'`
 
 ## Usage:
 
 ```javascript
-app.use(require('middleware-sanitizeurl')({ log: true }));
+app.use(require('middleware-sanitizeurl')());
 ```
