@@ -6,7 +6,7 @@
   "readmeFilename": "README.md",
   "repository": "good-hood-gmbh/middleware-sanitizeurl",
   "bugs": "https://github.com/good-hood-gmbh/middleware-sanitizeurl/issues",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "keywords": [
     "express",
     "expressjs",
@@ -17,18 +17,18 @@
   ],
   "main": "index.js",
   "engines": {
-    "node": "^8.x.x || ^10.x.x"
+    "node": "^10.x.x"
   },
   "scripts": {
     "test": "env TZ='Europe/Berlin' mocha || exit 0"
   },
   "devDependencies": {
-    "eslint": "^5.8.0",
+    "eslint": "^5.10.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "mocha": "^5.2.0",
     "chai": "^4.2.0",
-    "sinon": "^7.1.1"
+    "sinon": "^7.2.2"
   },
   "dependencies": {
     "debug": "^4.1.0"
