@@ -17,7 +17,7 @@ const getSafeUrl = (originalUrl) => {
 };
 
 module.exports = (opts) => {
-  const options = Object.assign({}, defaults, opts);
+  const options = { ...defaults, ...opts };
 
   return (req, res, next) => {
     const { originalUrl } = req;
